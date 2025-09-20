@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de PDF - Estudos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="toolbar">
+            <div class="toolbar-left">
+                <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                <button id="openFile" class="btn">📁 Abrir PDF</button>
+                <span class="separator">|</span>
+                <button id="prevPage" class="btn">⬅️ Anterior</button>
+                <span id="pageInfo" class="page-info">
+                    Página <input type="number" id="pageNum" value="1" min="1"> de <span id="pageCount">0</span>
+                </span>
+                <button id="nextPage" class="btn">Próxima ➡️</button>
+            </div>
+            
+            <div class="toolbar-center">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar no documento..." class="search-input">
+                    <button id="searchBtn" class="btn">🔍</button>
+                    <button id="prevMatch" class="btn" title="Resultado anterior">▲</button>
+                    <button id="nextMatch" class="btn" title="Próximo resultado">▼</button>
+                </div>
+            </div>
+            
+            <div class="toolbar-right">
+                <button id="zoomOut" class="btn">🔍➖</button>
+                <span id="zoomLevel" class="zoom-info">100%</span>
+                <button id="zoomIn" class="btn">🔍➕</button>
+                <button id="fitWidth" class="btn">📏 Ajustar</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>📑 Índice</h3>
+                    <button id="toggleSidebar" class="btn-small">◀</button>
+                </div>
+                <div id="outlineContainer" class="outline-container">
+                    <p class="no-outline">Nenhum PDF carregado</p>
+                </div>
+            </div>
+            
+            <div class="pdf-container">
+                <div id="viewerContainer" class="viewer-container">
+                    <canvas id="pdfCanvas"></canvas>
+                    <div id="textLayer" class="text-layer"></div>
+                    <div id="searchLayer" class="search-layer"></div>
+                </div>
+                
+                <div id="loadingMessage" class="loading-message">
+                    <h2>📖 Visualizador de PDF para Estudos</h2>
+                    <p>Clique em "Abrir PDF" para carregar sua apostila</p>
+                    <div class="features">
+                        <h3>Recursos disponíveis:</h3>
+                        <ul>
+                            <li>🔍 Busca de texto no documento</li>
+                            <li>🔍 Zoom personalizável</li>
+                            <li>📑 Navegação entre páginas</li>
+                            <li>📋 Índice automático (se disponível)</li>
+                            <li>💾 Funciona offline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
