@@ -89,13 +89,25 @@ Acesse o Dashboard do Stripe:
 
 ## 🚀 Produção
 
-Quando for para produção:
+⚠️ **IMPORTANTE:** Atualmente você está em **modo de teste**. Nenhum pagamento real está sendo processado!
 
+Para receber pagamentos reais e configurar produção, consulte o guia completo:
+
+👉 **[STRIPE_PRODUCAO.md](./STRIPE_PRODUCAO.md)** - Guia Completo de Produção
+
+**Resumo rápido:**
 1. Complete o processo de ativação da conta no Stripe
-2. Obtenha as chaves LIVE (não test)
-3. Atualize o `.env` de produção
-4. Configure webhook de produção com URL pública
-5. Teste extensivamente antes de lançar
+2. Configure conta bancária para receber transferências
+3. Obtenha as chaves LIVE (não test)
+4. Atualize o `.env` de produção
+5. Configure webhook de produção com URL pública
+6. Teste com transação real pequena (R$ 1,00)
+
+**Quando mudar para produção:**
+- ✅ Sistema 100% testado
+- ✅ Conta Stripe verificada
+- ✅ Conta bancária configurada
+- ✅ Pronto para receber dinheiro real
 
 ## 💡 Dicas
 

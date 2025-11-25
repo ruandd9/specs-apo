@@ -1,162 +1,323 @@
-# Apostilas Online
+# 📚 Sistema de Apostilas Online
 
-Uma plataforma completa para venda e visualização segura de materiais de estudo digitais. Este projeto inclui uma API backend e uma aplicação web frontend.
+Uma plataforma completa para venda e visualização segura de materiais de estudo digitais com integração de pagamento Stripe.
 
-> 🔧 **IMPORTANTE:** Se você está tendo problemas com login/registro, veja o arquivo [CORRECOES.md](./CORRECOES.md) para instruções detalhadas.
+[![Status](https://img.shields.io/badge/status-MVP%20Funcional-success)](./docs/desenvolvimento/STATUS_ATUAL.md)
+[![Versão](https://img.shields.io/badge/versão-1.0.0-blue)](./docs/RESUMO_FINAL.md)
+[![Documentação](https://img.shields.io/badge/docs-completa-brightgreen)](./docs/README.md)
 
-## Project Overview
+---
 
-Apostilas Online is a web platform that allows users to purchase and view digital study materials (apostilas) in a secure environment. The platform prevents unauthorized copying and downloading of materials through content protection mechanisms.
+## 🎯 Visão Geral
 
-## Features
+Sistema web completo que permite usuários comprarem e visualizarem apostilas digitais de forma segura, com proteção contra cópia e download não autorizado.
 
-### User Features
-- User registration and authentication
-- Browse available study materials
-- Purchase materials with secure payment processing
-- View purchased materials with watermark protection
-- Personal dashboard to manage purchases
+### ✨ Funcionalidades Principais
 
-### Admin Features
-- Manage study materials (create, update, delete)
-- User management (activate/deactivate accounts)
-- View system logs and audit trails
-- Monitor sales and platform activity
+- ✅ **Autenticação Completa** - Registro, login e proteção de rotas
+- ✅ **Sistema de Pagamento** - Integração com Stripe
+- ✅ **Visualizador PDF** - Visualização segura com watermark dinâmico
+- ✅ **Painel Administrativo** - Gerenciamento de usuários e materiais
+- ✅ **Interface em Português** - 100% traduzida
 
-### Technical Features
-- JWT-based authentication with refresh tokens
-- PDF to image conversion for content protection
-- Dynamic watermarking with user information
-- Stripe payment integration
-- RESTful API with Swagger documentation
-- Responsive web interface
-- MongoDB for data storage
+---
 
-## Project Structure
+## 🚀 Início Rápido
+
+### Pré-requisitos
+
+- Node.js (v16+)
+- MongoDB (Atlas ou local)
+- Conta Stripe (modo teste)
+
+### Instalação em 3 Passos
+
+1. **Clone e instale dependências:**
+   ```bash
+   git clone https://github.com/ruandd9/specs-apo.git
+   cd apo
+   
+   # Backend
+   cd backend
+   npm install
+   
+   # Frontend
+   cd ../frontend
+   npm install
+   ```
+
+2. **Configure o ambiente:**
+   ```bash
+   # Backend: copie e configure o .env
+   cd backend
+   copy .env.example .env
+   # Edite .env com suas configurações
+   
+   # Inicialize o banco de dados
+   npm run seed
+   ```
+
+3. **Inicie o sistema:**
+   ```bash
+   # Use o script automático (Windows)
+   start-dev.bat
+   
+   # Ou manualmente:
+   # Terminal 1 - Backend
+   cd backend
+   npm start
+   
+   # Terminal 2 - Frontend
+   cd frontend
+   npm run dev
+   ```
+
+**Acesse:** http://localhost:3003
+
+---
+
+## 📖 Documentação Completa
+
+Toda a documentação está organizada na pasta **[`docs/`](./docs/README.md)**
+
+### 📚 Documentos Principais
+
+| Documento | Descrição |
+|-----------|-----------|
+| **[RESUMO_FINAL.md](./docs/RESUMO_FINAL.md)** | Visão geral completa do projeto |
+| **[docs/README.md](./docs/README.md)** | Índice de toda documentação |
+
+### ⚙️ Setup e Configuração
+
+| Documento | Descrição |
+|-----------|-----------|
+| **[INSTALACAO_MONGODB.md](./docs/setup/INSTALACAO_MONGODB.md)** | Como instalar e configurar MongoDB |
+| **[COMO_CONFIGURAR_STRIPE.md](./docs/setup/COMO_CONFIGURAR_STRIPE.md)** | Guia rápido do Stripe (5 min) |
+| **[CONFIGURAR_STRIPE.md](./docs/setup/CONFIGURAR_STRIPE.md)** | Guia completo do Stripe |
+
+### 📘 Guias
+
+| Documento | Descrição |
+|-----------|-----------|
+| **[STRIPE_PRODUCAO.md](./docs/guias/STRIPE_PRODUCAO.md)** | Como receber pagamentos reais |
+
+### 🛠️ Desenvolvimento
+
+| Documento | Descrição |
+|-----------|-----------|
+| **[CORRECOES.md](./docs/desenvolvimento/CORRECOES.md)** | Histórico de correções |
+| **[ROADMAP.md](./docs/desenvolvimento/ROADMAP.md)** | Funcionalidades futuras |
+| **[STATUS_ATUAL.md](./docs/desenvolvimento/STATUS_ATUAL.md)** | Status do sistema |
+
+---
+
+## 🏗️ Estrutura do Projeto
 
 ```
 apo/
-├── backend/         # Node.js Express backend API
-├── frontend/        # React frontend application
-└── specs-apo/       # Project specifications and documentation
+├── backend/                    # API Node.js + Express
+│   ├── src/
+│   │   ├── controllers/       # Lógica de negócio
+│   │   ├── models/            # Modelos MongoDB
+│   │   ├── routes/            # Rotas da API
+│   │   ├── middleware/        # Autenticação, etc
+│   │   ├── services/          # Serviços externos
+│   │   └── scripts/           # Scripts de gerenciamento
+│   ├── uploads/               # PDFs e imagens
+│   └── server.js              # Entry point
+│
+├── frontend/                   # App React + Vite
+│   ├── src/
+│   │   ├── components/        # Componentes React
+│   │   ├── pages/             # Páginas
+│   │   ├── contexts/          # Context API
+│   │   ├── services/          # API client
+│   │   └── hooks/             # Custom hooks
+│   └── index.html
+│
+├── docs/                       # 📚 Documentação
+│   ├── setup/                 # Guias de configuração
+│   ├── guias/                 # Guias específicos
+│   └── desenvolvimento/       # Docs técnicas
+│
+└── specs-apo/                  # Especificações
 ```
 
-## Technologies Used
+---
+
+## 🔑 Credenciais de Teste
+
+### Usuários
+
+**Admin:**
+- Email: `admin@apostilas.com`
+- Senha: `admin123`
+
+**Usuário Comum:**
+- Email: `usuario@teste.com`
+- Senha: `teste123`
+
+### Cartão de Teste Stripe
+
+- **Número:** `4242 4242 4242 4242`
+- **Data:** `12/25` (qualquer data futura)
+- **CVC:** `123` (qualquer 3 dígitos)
+- **CEP:** Qualquer
+
+---
+
+## 🛠️ Tecnologias
 
 ### Backend
-- Node.js
-- Express.js
-- MongoDB with Mongoose
-- JWT for authentication
-- Stripe for payments
-- Sharp.js for image processing
-- PDF-Poppler for PDF conversion
-- Swagger for API documentation
+- Node.js + Express
+- MongoDB + Mongoose
+- JWT (autenticação)
+- Stripe (pagamentos)
+- PDF.js (visualização)
+- Swagger (documentação)
 
 ### Frontend
 - React 18
 - React Router v6
 - Vite
+- PDF.js
 - CSS3
 
-## 🚀 Início Rápido
+---
 
-### Pré-requisitos
-- Node.js (v16 ou superior)
-- MongoDB (local ou Atlas) - **[Ver guia de instalação](./INSTALACAO_MONGODB.md)**
-- npm ou yarn
+## 📊 Status do Projeto
 
-> ⚠️ **IMPORTANTE:** Se o backend não iniciar, provavelmente você precisa configurar o MongoDB. Veja [INSTALACAO_MONGODB.md](./INSTALACAO_MONGODB.md)
+### ✅ Implementado e Funcionando
 
-### Configuração do Backend
+- ✅ Autenticação completa (JWT)
+- ✅ Sistema de pagamento (Stripe)
+- ✅ Visualizador PDF com watermark
+- ✅ Painel administrativo
+- ✅ Gerenciamento de usuários
+- ✅ Gerenciamento de materiais
+- ✅ Interface em português
+- ✅ Proteção de conteúdo
 
-1. Navegue até o diretório backend:
-   ```bash
-   cd backend
-   ```
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-3. Crie um arquivo `.env` baseado no `.env.example`:
-   ```bash
-   copy .env.example .env
-   ```
-4. Atualize o arquivo `.env` com suas configurações
-5. Inicialize o banco de dados com usuários de teste:
-   ```bash
-   npm run seed
-   ```
-   Isso criará:
-   - Admin: admin@apostilas.com / admin123
-   - Usuário: usuario@teste.com / teste123
+### 🔄 Próximas Funcionalidades
 
-6. Inicie o servidor de desenvolvimento:
-   ```bash
-   npm run dev
-   ```
+Veja o **[ROADMAP.md](./docs/desenvolvimento/ROADMAP.md)** para lista completa:
 
-### Configuração do Frontend
+- Sistema de cupons de desconto
+- Recuperação de senha
+- Notificações por email
+- Sistema de avaliações
+- Categorias de apostilas
+- Dashboard de vendas
 
-1. Navegue até o diretório frontend:
-   ```bash
-   cd frontend
-   ```
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-3. Inicie o servidor de desenvolvimento:
-   ```bash
-   npm run dev
-   ```
+---
 
-### Ou Use o Script Automático
-
-Execute o arquivo `start-dev.bat` na raiz do projeto para iniciar backend e frontend automaticamente.
-
-## Development Workflow
-
-1. Start the backend server (port 3000)
-2. Start the frontend development server (port 3001)
-3. Access the application at http://localhost:3001
-
-## API Documentation
-
-Backend API documentation is available through Swagger UI at:
-http://localhost:3000/api-docs
-
-## Deployment
+## 🚀 Deploy
 
 ### Backend
-The backend can be deployed to any Node.js hosting service like:
+Pode ser deployado em:
 - Railway
 - Render
 - Heroku
-- DigitalOcean App Platform
+- DigitalOcean
 
 ### Frontend
-The frontend can be deployed to any static hosting service like:
+Pode ser deployado em:
 - Vercel
 - Netlify
 - GitHub Pages
 
-## Security Features
+**Veja:** [STRIPE_PRODUCAO.md](./docs/guias/STRIPE_PRODUCAO.md) para configurar pagamentos reais.
 
-1. **Content Protection**: PDF files are converted to images and watermarked with user information
-2. **Access Control**: Users can only view materials they have purchased
-3. **Authentication**: JWT tokens with refresh token mechanism
-4. **Payment Security**: Stripe integration for secure payment processing
-5. **Data Protection**: Password hashing and secure storage
+---
 
-## Contributing
+## 🔒 Segurança
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a pull request
+- ✅ Senhas hasheadas (bcrypt)
+- ✅ JWT tokens com expiração
+- ✅ Proteção de rotas
+- ✅ Watermark dinâmico
+- ✅ Validação de dados
+- ✅ Integração segura com Stripe
 
-## License
+---
 
-This project is licensed under the MIT License.
+## 📝 Scripts Úteis
+
+### Backend
+```bash
+npm start          # Iniciar servidor
+npm run dev        # Modo desenvolvimento (nodemon)
+npm run seed       # Inicializar banco de dados
+```
+
+### Frontend
+```bash
+npm run dev        # Servidor de desenvolvimento
+npm run build      # Build para produção
+npm run preview    # Preview do build
+```
+
+### Gerenciamento
+```bash
+# Adicionar material
+node backend/src/scripts/addMaterial.js
+
+# Verificar materiais
+node backend/src/scripts/checkMaterials.js
+```
+
+---
+
+## 🆘 Problemas Comuns
+
+### Backend não inicia
+- **Causa:** MongoDB não configurado
+- **Solução:** [INSTALACAO_MONGODB.md](./docs/setup/INSTALACAO_MONGODB.md)
+
+### Erro "Invalid API Key"
+- **Causa:** Stripe não configurado
+- **Solução:** [COMO_CONFIGURAR_STRIPE.md](./docs/setup/COMO_CONFIGURAR_STRIPE.md)
+
+### Apostila não aparece após compra
+- **Causa:** Webhook não configurado (normal em teste)
+- **Solução:** Sistema verifica automaticamente na página de sucesso
+
+---
+
+## 📞 Suporte
+
+- **Documentação:** [docs/README.md](./docs/README.md)
+- **Issues:** [GitHub Issues](https://github.com/ruandd9/specs-apo/issues)
+- **Email:** [seu-email@exemplo.com]
+
+---
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'feat: adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+## 🎉 Agradecimentos
+
+- Stripe pela excelente API de pagamentos
+- MongoDB Atlas pelo banco de dados gratuito
+- Comunidade React e Node.js
+
+---
+
+**Desenvolvido com ❤️ por [Seu Nome]**
+
+**Última atualização:** 25/11/2025  
+**Versão:** 1.0.0  
+**Status:** ✅ MVP Completo e Funcional
