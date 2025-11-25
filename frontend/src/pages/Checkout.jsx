@@ -41,8 +41,16 @@ const Checkout = () => {
     setError('');
     
     try {
+      console.log('🛒 Iniciando checkout:', { 
+        materialId: id, 
+        token: token ? 'presente' : 'ausente',
+        materialData: material 
+      });
+      
       // Criar sessão de checkout no Stripe
       const response = await api.createCheckoutSession(token, id);
+      
+      console.log('✅ Resposta do checkout:', response);
       
       // Redirecionar para o Stripe Checkout
       if (response.url) {
@@ -51,6 +59,7 @@ const Checkout = () => {
         throw new Error('URL de checkout não recebida');
       }
     } catch (err) {
+      console.error('❌ Erro no checkout:', err);
       setError(err.message || 'Falha ao processar pagamento. Tente novamente.');
       setProcessing(false);
     }

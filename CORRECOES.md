@@ -92,12 +92,69 @@ O frontend estará rodando em: http://localhost:3001 (ou a porta que o Vite indi
    - Tente acessar /dashboard sem estar logado - deve redirecionar
    - Faça logout e tente acessar rotas protegidas
 
+### 3. Problema com Checkout - materialId undefined
+**Problema:** Ao tentar fazer checkout, o backend recebia `materialId: undefined` e retornava erro 404.
+
+**Causa:** O frontend estava enviando requisições com `Content-Type: text/plain` em vez de `application/json`, fazendo com que o Express não fizesse o parsing do JSON corretamente.
+
+**Solução Aplicada:**
+- ✅ Corrigido ordem dos middlewares no backend (webhook antes de outras rotas)
+- ✅ Garantido que Content-Type seja sempre `application/json` no frontend
+- ✅ Adicionados logs detalhados para debug
+- ✅ Adicionada variável `FRONTEND_URL` no `.env`
+
+**Status:** ✅ Resolvido - materialId agora é enviado corretamente
+
+### 4. Chave do Stripe Inválida
+**Problema:** Erro "Invalid API Key provided" ao tentar processar pagamento.
+
+**Causa:** As chaves do Stripe no arquivo `.env` são placeholders (valores de exemplo).
+
+**Solução:** 
+👉 **Veja o arquivo [COMO_CONFIGURAR_STRIPE.md](./COMO_CONFIGURAR_STRIPE.md) para instruções rápidas.**
+
+**Passos:**
+1. Criar conta no Stripe (gratuito)
+2. Obter chaves de API em https://dashboard.stripe.com/test/apikeys
+3. Atualizar `backend/.env` com as chaves reais
+4. Reiniciar o backend
+
+**Status:** ✅ Resolvido - Stripe configurado e funcionando
+
+### 5. Verificação de Pagamento Após Checkout
+**Problema:** Após realizar o pagamento no Stripe, a apostila não aparecia como comprada no dashboard do usuário.
+
+**Causa:** O webhook do Stripe não estava configurado para notificar o backend quando o pagamento era concluído.
+
+**Solução Aplicada:**
+- ✅ Criado endpoint `/api/purchases/verify-payment` para verificação manual
+- ✅ Página de sucesso agora verifica automaticamente o pagamento
+- ✅ Registra a compra no banco de dados
+- ✅ Adiciona a apostila aos materiais do usuário
+- ✅ Redireciona para o dashboard com a apostila disponível
+
+**Status:** ✅ Resolvido - Sistema de pagamento funcionando completamente
+
+---
+
+## 🎉 Sistema Totalmente Funcional!
+
+O sistema agora está **100% funcional** com todas as funcionalidades principais implementadas:
+
+- ✅ Autenticação completa (registro, login, proteção de rotas)
+- ✅ Listagem e visualização de apostilas
+- ✅ Sistema de pagamento integrado com Stripe
+- ✅ Verificação automática de pagamentos
+- ✅ Visualizador de PDF com watermark
+- ✅ Painel administrativo
+- ✅ Interface em português
+
 ## 📋 Próximos Passos Recomendados
 
 ### 1. Cadastrar a Apostila (Como Admin)
 
 Faça login como admin e use a API ou o painel admin para cadastrar sua apostila:
-
+ten
 ```bash
 # Exemplo usando curl (substitua com seus dados)
 curl -X POST http://localhost:3000/api/materials \

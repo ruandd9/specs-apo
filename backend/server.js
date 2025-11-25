@@ -31,8 +31,34 @@ connectDB();
 app.use(helmet()); // Security headers
 app.use(cors()); // Enable CORS
 app.use(morgan('combined')); // Logging
+
+// Debug middleware - log all requests
+app.use((req, res, next) => {
+  if (req.path.includes('/checkout')) {
+    console.log('🔍 DEBUG - Request recebida:', {
+      method: req.method,
+      path: req.path,
+      contentType: req.headers['content-type'],
+      bodyBefore: req.body
+    });
+  }
+  next();
+});
+
 app.use(express.json({ limit: '50mb' })); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true, limit: '50mb' })); // Parse URL-encoded bodies
+
+// Debug middleware - log after parsing
+app.use((req, res, next) => {
+  if (req.path.includes('/checkout')) {
+    console.log('🔍 DEBUG - Após parsing:', {
+      bodyAfter: req.body,
+      bodyType: typeof req.body,
+      bodyKeys: Object.keys(req.body || {})
+    });
+  }
+  next();
+});
 
 // Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

@@ -10,11 +10,11 @@ class ApiService {
     const url = `${this.baseURL}${endpoint}`;
     
     const config = {
+      ...options,
       headers: {
         'Content-Type': 'application/json',
         ...options.headers,
       },
-      ...options,
     };
 
     try {
@@ -89,13 +89,24 @@ class ApiService {
 
   // Purchase endpoints
   async createCheckoutSession(token, materialId) {
-    return this.request('/purchases/checkout', {
+    console.log('📤 Enviando requisição de checkout:', {
+      url: `${this.baseURL}/purchases/checkout`,
+      materialId,
+      body: JSON.stringify({ materialId })
+    });
+    
+    const requestOptions = {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({ materialId }),
-    });
+    };
+    
+    console.log('📤 Request options:', requestOptions);
+    
+    return this.request('/purchases/checkout', requestOptions);
   }
 
   async getUserPurchases(token) {
@@ -103,6 +114,17 @@ class ApiService {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+    });
+  }
+
+  async verifyPaymentSuccess(token, sessionId) {
+    return this.request('/purchases/verify-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ session_id: sessionId }),
     });
   }
 

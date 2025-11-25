@@ -3,7 +3,8 @@ const {
   createCheckoutSession,
   handleStripeWebhook,
   getUserPurchases,
-  getPurchaseById
+  getPurchaseById,
+  verifyPaymentSuccess
 } = require('../controllers/purchaseController');
 const { auth } = require('../middleware/auth');
 
@@ -16,8 +17,28 @@ const { auth } = require('../middleware/auth');
 
 const router = express.Router();
 
-// All routes require authentication
-router.use(auth);
+/**
+ * @swagger
+ * /api/purchases/webhook:
+ *   post:
+ *     summary: Stripe webhook endpoint
+ *     tags: [Purchases]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     responses:
+ *       200:
+ *         description: Webhook received successfully
+ *       400:
+ *         description: Webhook error
+ *       500:
+ *         description: Internal server error
+ */
+// IMPORTANTE: Webhook deve vir ANTES das outras rotas para usar express.raw()
+router.post('/webhook', express.raw({type: 'application/json'}), handleStripeWebhook);
 
 /**
  * @swagger
@@ -59,7 +80,38 @@ router.use(auth);
  *       500:
  *         description: Internal server error
  */
-router.post('/checkout', createCheckoutSession);
+router.post('/checkout', auth, createCheckoutSession);
+
+/**
+ * @swagger
+ * /api/purchases/verify-payment:
+ *   post:
+ *     summary: Verify payment success and register purchase
+ *     tags: [Purchases]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               session_id:
+ *                 type: string
+ *             required:
+ *               - session_id
+ *     responses:
+ *       200:
+ *         description: Payment verified successfully
+ *       400:
+ *         description: Payment not completed
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+router.post('/verify-payment', auth, verifyPaymentSuccess);
 
 /**
  * @swagger
@@ -83,7 +135,7 @@ router.post('/checkout', createCheckoutSession);
  *       500:
  *         description: Internal server error
  */
-router.get('/', getUserPurchases);
+router.get('/', auth, getUserPurchases);
 
 /**
  * @swagger
@@ -113,28 +165,6 @@ router.get('/', getUserPurchases);
  *       500:
  *         description: Internal server error
  */
-router.get('/:id', getPurchaseById);
-
-/**
- * @swagger
- * /api/purchases/webhook:
- *   post:
- *     summary: Stripe webhook endpoint
- *     tags: [Purchases]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *     responses:
- *       200:
- *         description: Webhook received successfully
- *       400:
- *         description: Webhook error
- *       500:
- *         description: Internal server error
- */
-router.post('/webhook', express.raw({type: 'application/json'}), handleStripeWebhook);
+router.get('/:id', auth, getPurchaseById);
 
 module.exports = router;
