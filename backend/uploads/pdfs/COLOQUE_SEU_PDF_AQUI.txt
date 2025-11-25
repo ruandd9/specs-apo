@@ -1,0 +1,31 @@
+📄 COLOQUE SEU ARQUIVO PDF AQUI
+
+Para cadastrar sua apostila:
+
+1. Copie seu arquivo PDF para esta pasta
+   Exemplo: apostila-completa.pdf
+
+2. Execute o comando:
+   cd backend
+   npm run add-material
+
+3. O script vai:
+   ✅ Encontrar o PDF automaticamente
+   ✅ Fazer upload via API
+   ✅ Converter para imagens
+   ✅ Adicionar watermark
+   ✅ Ativar o material
+
+Localização desta pasta:
+backend/uploads/pdfs/
+
+Formatos aceitos:
+- .pdf (apenas PDF)
+
+Tamanho máximo:
+- 50MB
+
+Dica:
+- Use um nome descritivo para o arquivo
+- Certifique-se de que o PDF não está corrompido
+- O backend deve estar rodando (npm run dev)
