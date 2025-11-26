@@ -51,7 +51,7 @@ Use cartões de teste do Stripe:
 
 ### Cartão de Sucesso:
 - **Número:** 4242 4242 4242 4242
-- **Data:** Qualquer data futura (ex: 12/25)
+- **Data:** Qualquer data futura (ex: a)
 - **CVC:** Qualquer 3 dígitos (ex: 123)
 - **CEP:** Qualquer CEP
 
