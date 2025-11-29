@@ -2,7 +2,7 @@ const Material = require('../models/Material');
 const User = require('../models/User');
 const fs = require('fs').promises;
 const path = require('path');
-const { convertPdfToImages } = require('../services/pdfConverter');
+// PDF conversion removed - using PDF.js in frontend instead
 
 const getAllMaterials = async (req, res) => {
   try {
@@ -75,16 +75,8 @@ const createMaterial = async (req, res) => {
     
     await material.save();
     
-    // Convert PDF to images
-    try {
-      const { imagePath, imageCount } = await convertPdfToImages(req.file.path, material._id);
-      material.imagePath = imagePath;
-      material.imageCount = imageCount;
-      await material.save();
-    } catch (conversionError) {
-      console.error('Error converting PDF to images:', conversionError);
-      // Don't fail the request if conversion fails, but log the error
-    }
+    // PDF conversion removed - using PDF.js in frontend for direct PDF viewing
+    // No need to convert to images anymore
     
     res.status(201).json(material);
   } catch (error) {
