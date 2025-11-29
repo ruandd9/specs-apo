@@ -29,7 +29,14 @@ connectDB();
 
 // Middleware
 app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+// Enable CORS for production
+app.use(cors({
+  origin: [
+    'http://localhost:3001',
+    'https://apostilas-online.onrender.com' // Frontend URL
+  ],
+  credentials: true
+}));
 app.use(morgan('combined')); // Logging
 
 // Debug middleware - log all requests
