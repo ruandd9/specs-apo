@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../services/api';
+import Icon from '../components/Icon';
 
 const MaterialDetail = () => {
   const { id } = useParams();
@@ -56,21 +57,27 @@ const MaterialDetail = () => {
           <h3>O Que Você Vai Encontrar:</h3>
           <div className="features-list">
             <div className="feature-item">
-              <span className="feature-icon-small">🎯</span>
+              <span className="feature-icon-small">
+                <Icon name="trophy" size="2x" />
+              </span>
               <div>
                 <strong>Raio-X do ENEM</strong>
                 <p>Entenda de forma visual os tópicos mais cobrados no ENEM.</p>
               </div>
             </div>
             <div className="feature-item">
-              <span className="feature-icon-small">👨‍🏫</span>
+              <span className="feature-icon-small">
+                <Icon name="chalkboard-teacher" size="2x" />
+              </span>
               <div>
                 <strong>Instrutores Preparados</strong>
                 <p>Apostila feita com esmero por Autores e Revisores preparados.</p>
               </div>
             </div>
             <div className="feature-item">
-              <span className="feature-icon-small">📖</span>
+              <span className="feature-icon-small">
+                <Icon name="book" size="2x" />
+              </span>
               <div>
                 <strong>Conteúdo Completo</strong>
                 <p>Tudo sobre Termologia, Calorimetria, Eletromagnestismo e muito mais!</p>
@@ -84,10 +91,10 @@ const MaterialDetail = () => {
           {hasPurchased ? (
             <>
               <div className="purchased-badge-inline">
-                ✓ Você já possui esta apostila
+                <Icon name="check-circle" /> Você já possui esta apostila
               </div>
               <Link to={`/view/${id}`} className="btn btn-primary btn-lg">
-                📖 Acessar Apostila
+                <Icon name="book-open" /> Acessar Apostila
               </Link>
             </>
           ) : (
@@ -97,7 +104,7 @@ const MaterialDetail = () => {
                 <span className="price-value">R$ {material.price.toFixed(2)}</span>
               </div>
               <Link to={`/checkout/${id}`} className="btn btn-primary btn-lg">
-                🛒 Comprar Agora
+                <Icon name="shopping-cart" /> Comprar Agora
               </Link>
               <p className="payment-note">Pagamento seguro • Acesso imediato</p>
             </>

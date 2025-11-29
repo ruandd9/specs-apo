@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../services/api';
+import Icon from '../components/Icon';
 
 const Checkout = () => {
   const { id } = useParams();
@@ -81,7 +82,9 @@ const Checkout = () => {
         {/* Resumo do Pedido */}
         <div className="checkout-card">
           <div className="card-section">
-            <h3 className="section-title-small">📦 Resumo do Pedido</h3>
+            <h3 className="section-title-small">
+              <Icon name="box-open" /> Resumo do Pedido
+            </h3>
             <div className="order-item-modern">
               <div className="item-details">
                 <h4>{material.title}</h4>
@@ -98,18 +101,26 @@ const Checkout = () => {
 
           {/* Método de Pagamento */}
           <div className="card-section payment-section-modern">
-            <h3 className="section-title-small">💳 Pagamento Seguro</h3>
+            <h3 className="section-title-small">
+              <Icon name="credit-card" /> Pagamento Seguro
+            </h3>
             <div className="payment-features">
               <div className="payment-feature-item">
-                <span className="feature-icon-payment">🔒</span>
+                <span className="feature-icon-payment">
+                  <Icon name="lock" />
+                </span>
                 <span>Pagamento 100% seguro via Stripe</span>
               </div>
               <div className="payment-feature-item">
-                <span className="feature-icon-payment">💳</span>
+                <span className="feature-icon-payment">
+                  <Icon name="credit-card" />
+                </span>
                 <span>Cartões de crédito e débito</span>
               </div>
               <div className="payment-feature-item">
-                <span className="feature-icon-payment">⚡</span>
+                <span className="feature-icon-payment">
+                  <Icon name="bolt" />
+                </span>
                 <span>Acesso imediato após aprovação</span>
               </div>
             </div>
@@ -118,7 +129,9 @@ const Checkout = () => {
           {/* Erro */}
           {error && (
             <div className="checkout-error">
-              <span className="error-icon">⚠️</span>
+              <span className="error-icon">
+                <Icon name="exclamation-triangle" />
+              </span>
               <span>{error}</span>
             </div>
           )}
@@ -132,12 +145,12 @@ const Checkout = () => {
             >
               {processing ? (
                 <>
-                  <span className="spinner-small"></span>
+                  <Icon name="spinner" spin />
                   Processando...
                 </>
               ) : (
                 <>
-                  🛒 Pagar R$ {material.price.toFixed(2)}
+                  <Icon name="shopping-cart" /> Pagar R$ {material.price.toFixed(2)}
                 </>
               )}
             </button>

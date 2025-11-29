@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useState, useEffect } from 'react';
 import api from '../services/api';
+import Icon from '../components/Icon';
 
 const Home = () => {
   const { user, token } = useAuth();
@@ -56,7 +57,7 @@ const Home = () => {
         ) : hasPurchased ? (
           <div className="cta-buttons">
             <Link to={`/view/${material._id}`} className="btn btn-primary btn-lg">
-              📖 Acessar Minha Apostila
+              <Icon name="book-open" /> Acessar Minha Apostila
             </Link>
           </div>
         ) : material ? (
@@ -95,17 +96,23 @@ const Home = () => {
         <h2 className="section-title">Por que escolher o Fisica 4VEST?</h2>
         <div className="features">
           <div className="feature">
-            <div className="feature-icon">📚</div>
+            <div className="feature-icon">
+              <Icon name="book" size="3x" />
+            </div>
             <h3>Estudo Organizado</h3>
             <p>Interface simples e intuitiva para organizar seu conteúdo de forma eficaz e otimizar seus estudos.</p>
           </div>
           <div className="feature">
-            <div className="feature-icon">👥</div>
+            <div className="feature-icon">
+              <Icon name="chalkboard-teacher" size="3x" />
+            </div>
             <h3>Apoio ao Estudo em Grupo</h3>
             <p>Compartilhe materiais e tire dúvidas com colegas, criando uma rede de aprendizado colaborativa.</p>
           </div>
           <div className="feature">
-            <div className="feature-icon">📊</div>
+            <div className="feature-icon">
+              <Icon name="chart-line" size="3x" />
+            </div>
             <h3>Acompanhamento</h3>
             <p>Acompanhe sua evolução e saiba exatamente onde focar para alcançar a aprovação no vestibular.</p>
           </div>
