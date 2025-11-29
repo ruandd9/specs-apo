@@ -123,15 +123,7 @@ const Home = () => {
         </div>
       )}
 
-      {/* Authors Section */}
-      <div className="authors-section">
-        <h3>Sobre os Autores</h3>
-        <p className="authors-names">Gabriel Nogueira & Marcus José</p>
-        <p className="authors-description">
-          Professores especializados em Física para vestibulares, com anos de experiência 
-          ajudando estudantes a alcançarem a aprovação nos principais processos seletivos do país.
-        </p>
-      </div>
+      
     </div>
   );
 };
