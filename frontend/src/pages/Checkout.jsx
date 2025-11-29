@@ -71,44 +71,81 @@ const Checkout = () => {
 
   return (
     <div className="checkout">
-      <h2>Finalizar Compra</h2>
-      
-      <div className="checkout-summary">
-        <h3>Resumo do Pedido</h3>
-        <div className="order-item">
-          <div>
-            <h4>{material.title}</h4>
-            <p>{material.description}</p>
+      <div className="checkout-container">
+        {/* Header */}
+        <div className="checkout-header">
+          <h1>Finalizar Compra</h1>
+          <p className="checkout-subtitle">Você está a um passo de ter acesso ao material completo</p>
+        </div>
+
+        {/* Resumo do Pedido */}
+        <div className="checkout-card">
+          <div className="card-section">
+            <h3 className="section-title-small">📦 Resumo do Pedido</h3>
+            <div className="order-item-modern">
+              <div className="item-details">
+                <h4>{material.title}</h4>
+                <p>{material.description}</p>
+              </div>
+              <div className="item-price-modern">R$ {material.price.toFixed(2)}</div>
+            </div>
+            <div className="order-divider"></div>
+            <div className="order-total-modern">
+              <span className="total-label">Total a Pagar:</span>
+              <span className="total-value">R$ {material.price.toFixed(2)}</span>
+            </div>
           </div>
-          <span className="item-price">R$ {material.price.toFixed(2)}</span>
+
+          {/* Método de Pagamento */}
+          <div className="card-section payment-section-modern">
+            <h3 className="section-title-small">💳 Pagamento Seguro</h3>
+            <div className="payment-features">
+              <div className="payment-feature-item">
+                <span className="feature-icon-payment">🔒</span>
+                <span>Pagamento 100% seguro via Stripe</span>
+              </div>
+              <div className="payment-feature-item">
+                <span className="feature-icon-payment">💳</span>
+                <span>Cartões de crédito e débito</span>
+              </div>
+              <div className="payment-feature-item">
+                <span className="feature-icon-payment">⚡</span>
+                <span>Acesso imediato após aprovação</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Erro */}
+          {error && (
+            <div className="checkout-error">
+              <span className="error-icon">⚠️</span>
+              <span>{error}</span>
+            </div>
+          )}
+
+          {/* Botão de Pagamento */}
+          <div className="checkout-actions">
+            <button 
+              className="btn btn-primary btn-lg btn-checkout" 
+              onClick={handleCheckout}
+              disabled={processing}
+            >
+              {processing ? (
+                <>
+                  <span className="spinner-small"></span>
+                  Processando...
+                </>
+              ) : (
+                <>
+                  🛒 Pagar R$ {material.price.toFixed(2)}
+                </>
+              )}
+            </button>
+            <p className="checkout-note">
+              Você será redirecionado para a página segura de pagamento
+            </p>
+          </div>
         </div>
-        <div className="order-total">
-          <strong>Total:</strong>
-          <strong>R$ {material.price.toFixed(2)}</strong>
-        </div>
-      </div>
-      
-      <div className="payment-section">
-        <h3>Método de Pagamento</h3>
-        <div className="payment-info">
-          <p>💳 Pagamento seguro via Stripe</p>
-          <p>✅ Aceitamos cartões de crédito e débito</p>
-          <p>🔒 Seus dados estão protegidos</p>
-        </div>
-        
-        {error && <div className="alert alert-danger">{error}</div>}
-        
-        <button 
-          className="btn btn-primary btn-lg" 
-          onClick={handleCheckout}
-          disabled={processing}
-        >
-          {processing ? 'Processando...' : `Pagar R$ ${material.price.toFixed(2)}`}
-        </button>
-        
-        <p className="checkout-note">
-          Você será redirecionado para a página segura de pagamento do Stripe
-        </p>
       </div>
     </div>
   );
