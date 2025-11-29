@@ -28,38 +28,74 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h2>Minha Conta</h2>
-      
-      <div className="user-info">
-        <p><strong>Nome:</strong> {user?.name}</p>
-        <p><strong>Email:</strong> {user?.email}</p>
+      {/* Header */}
+      <div className="dashboard-header">
+        <div className="header-content">
+          <h1>Minha Conta</h1>
+          <p className="header-subtitle">Bem-vindo de volta, {user?.name}! 👋</p>
+        </div>
       </div>
       
+      {/* User Info Card */}
+      <div className="user-info-card">
+        <div className="info-icon">👤</div>
+        <div className="info-content">
+          <div className="info-item">
+            <span className="info-label">Nome:</span>
+            <span className="info-value">{user?.name}</span>
+          </div>
+          <div className="info-item">
+            <span className="info-label">Email:</span>
+            <span className="info-value">{user?.email}</span>
+          </div>
+        </div>
+      </div>
+      
+      {/* Materials Section */}
       <div className="dashboard-section">
-        <h3>Minhas Apostilas</h3>
+        <div className="section-header">
+          <h2>📚 Minhas Apostilas</h2>
+          <span className="materials-count">
+            {purchases.length} {purchases.length === 1 ? 'apostila' : 'apostilas'}
+          </span>
+        </div>
+        
         {error && <div className="alert alert-danger">{error}</div>}
+        
         {loading ? (
-          <p>Carregando...</p>
+          <div className="loading-state">
+            <div className="spinner"></div>
+            <p>Carregando suas apostilas...</p>
+          </div>
         ) : purchases.length === 0 ? (
           <div className="empty-state">
-            <p>Você ainda não possui nenhuma apostila.</p>
-            <Link to="/" className="btn btn-primary">Ver Apostilas Disponíveis</Link>
+            <div className="empty-icon">📖</div>
+            <h3>Nenhuma apostila ainda</h3>
+            <p>Você ainda não possui nenhuma apostila. Comece agora sua jornada rumo à aprovação!</p>
+            <Link to="/" className="btn btn-primary btn-lg">
+              🔍 Explorar Apostilas Disponíveis
+            </Link>
           </div>
         ) : (
           <div className="materials-grid">
             {purchases.map(purchase => (
-              <div key={purchase._id} className="material-card">
-                <h4>{purchase.material.title}</h4>
-                <p>{purchase.material.description}</p>
-                <p className="purchase-date">
-                  Comprado em: {new Date(purchase.createdAt).toLocaleDateString('pt-BR')}
-                </p>
-                <Link 
-                  to={`/view/${purchase.material._id}`} 
-                  className="btn btn-primary"
-                >
-                  Acessar Apostila
-                </Link>
+              <div key={purchase._id} className="material-card purchased">
+                <div className="card-badge">✓ Adquirida</div>
+                <div className="card-content">
+                  <h3>{purchase.material.title}</h3>
+                  <p className="card-description">{purchase.material.description}</p>
+                  <div className="card-footer">
+                    <span className="purchase-date">
+                      📅 {new Date(purchase.createdAt).toLocaleDateString('pt-BR')}
+                    </span>
+                    <Link 
+                      to={`/view/${purchase.material._id}`} 
+                      className="btn btn-primary"
+                    >
+                      Acessar Apostila →
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
