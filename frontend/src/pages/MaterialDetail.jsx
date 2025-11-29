@@ -30,31 +30,77 @@ const MaterialDetail = () => {
 
   const hasPurchased = user && material && user.ownedMaterials?.includes(material._id);
 
-  if (loading) return <div className="loading">Carregando detalhes...</div>;
+  if (loading) {
+    return (
+      <div className="loading-state">
+        <div className="spinner"></div>
+        <p>Carregando detalhes...</p>
+      </div>
+    );
+  }
+  
   if (error) return <div className="error">{error}</div>;
   if (!material) return <div className="error">Material não encontrado</div>;
 
   return (
     <div className="material-detail">
-      <h2>{material.title}</h2>
-      
-      <div className="material-info">
-        <p>{material.description}</p>
-        
-        <div className="material-details">
-          <p><strong>Páginas:</strong> {material.imageCount || 'N/A'} páginas</p>
-          <p className="price"><strong>Preço:</strong> R$ {material.price.toFixed(2)}</p>
+      <div className="detail-card">
+        {/* Header */}
+        <div className="detail-header">
+          <h1>{material.title}</h1>
+          <p className="detail-description">{material.description}</p>
         </div>
-        
-        <div className="actions">
+
+        {/* Features */}
+        <div className="detail-features-compact">
+          <h3>O Que Você Vai Encontrar:</h3>
+          <div className="features-list">
+            <div className="feature-item">
+              <span className="feature-icon-small">🎯</span>
+              <div>
+                <strong>Raio-X do ENEM</strong>
+                <p>Entenda de forma visual os tópicos mais cobrados no ENEM.</p>
+              </div>
+            </div>
+            <div className="feature-item">
+              <span className="feature-icon-small">👨‍🏫</span>
+              <div>
+                <strong>Instrutores Preparados</strong>
+                <p>Apostila feita com esmero por Autores e Revisores preparados.</p>
+              </div>
+            </div>
+            <div className="feature-item">
+              <span className="feature-icon-small">📖</span>
+              <div>
+                <strong>Conteúdo Completo</strong>
+                <p>Tudo sobre Termologia, Calorimetria, Eletromagnestismo e muito mais!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Price and CTA */}
+        <div className="detail-footer">
           {hasPurchased ? (
-            <Link to={`/view/${id}`} className="btn btn-primary">
-              Acessar Apostila
-            </Link>
+            <>
+              <div className="purchased-badge-inline">
+                ✓ Você já possui esta apostila
+              </div>
+              <Link to={`/view/${id}`} className="btn btn-primary btn-lg">
+                📖 Acessar Apostila
+              </Link>
+            </>
           ) : (
-            <Link to={`/checkout/${id}`} className="btn btn-primary">
-              Comprar Agora - R$ {material.price.toFixed(2)}
-            </Link>
+            <>
+              <div className="price-inline">
+                <span className="price-label">Investimento:</span>
+                <span className="price-value">R$ {material.price.toFixed(2)}</span>
+              </div>
+              <Link to={`/checkout/${id}`} className="btn btn-primary btn-lg">
+                🛒 Comprar Agora
+              </Link>
+              <p className="payment-note">Pagamento seguro • Acesso imediato</p>
+            </>
           )}
         </div>
       </div>

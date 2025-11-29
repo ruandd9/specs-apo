@@ -122,8 +122,6 @@ const Home = () => {
           </Link>
         </div>
       )}
-
-      
     </div>
   );
 };

@@ -581,22 +581,137 @@ main {
   color: #646cff;
 }
 
-/* Material Detail */
+/* Material Detail - Compact Card Layout */
 .material-detail {
   max-width: 800px;
   margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-.material-info {
-  background-color: #f9f9f9;
+.detail-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Detail Header */
+.detail-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.detail-header h1 {
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.detail-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* Features Compact */
+.detail-features-compact {
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.material-details {
-  margin: 2rem 0;
-  text-align: left;
+.detail-features-compact h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+.feature-icon-small {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+  width: 60px;
+  text-align: center;
+}
+
+.feature-item > div {
+  flex: 1;
+}
+
+.feature-item strong {
+  display: block;
+  color: #333;
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.feature-item p {
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Detail Footer */
+.detail-footer {
+  padding: 2rem;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.purchased-badge-inline {
+  display: inline-block;
+  background: #4caf50;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.price-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.price-inline .price-label {
+  font-size: 1rem;
+  color: #666;
+}
+
+.price-inline .price-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #646cff;
+}
+
+.payment-note {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 1rem;
 }
 
 .actions {

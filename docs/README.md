@@ -13,6 +13,9 @@ Bem-vindo à documentação completa do sistema de apostilas online!
 - **[CONFIGURAR_STRIPE.md](./setup/CONFIGURAR_STRIPE.md)** - Guia completo do Stripe
 
 ### 📘 Guias
+- **[DEPLOY_RENDER.md](./guias/DEPLOY_RENDER.md)** - 🚀 Deploy com Render (MAIS FÁCIL)
+- **[DEPLOY_RAPIDO.md](./guias/DEPLOY_RAPIDO.md)** - ⚡ Deploy com Railway
+- **[DEPLOY.md](./guias/DEPLOY.md)** - Guia completo de deploy
 - **[STRIPE_PRODUCAO.md](./guias/STRIPE_PRODUCAO.md)** - Como receber pagamentos reais
 
 ### 🛠️ Desenvolvimento
