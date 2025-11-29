@@ -57,7 +57,7 @@ const Home = () => {
         ) : hasPurchased ? (
           <div className="cta-buttons">
             <Link to={`/view/${material._id}`} className="btn btn-primary btn-lg">
-              <Icon name="book-open" /> Acessar Minha Apostila
+              <Icon name="book-open" size="sm" /> Acessar Minha Apostila
             </Link>
           </div>
         ) : material ? (
@@ -97,21 +97,21 @@ const Home = () => {
         <div className="features">
           <div className="feature">
             <div className="feature-icon">
-              <Icon name="book" size="3x" />
+              <Icon name="book" size="2x" />
             </div>
             <h3>Estudo Organizado</h3>
             <p>Interface simples e intuitiva para organizar seu conteúdo de forma eficaz e otimizar seus estudos.</p>
           </div>
           <div className="feature">
             <div className="feature-icon">
-              <Icon name="chalkboard-teacher" size="3x" />
+              <Icon name="chalkboard-teacher" size="2x" />
             </div>
             <h3>Apoio ao Estudo em Grupo</h3>
             <p>Compartilhe materiais e tire dúvidas com colegas, criando uma rede de aprendizado colaborativa.</p>
           </div>
           <div className="feature">
             <div className="feature-icon">
-              <Icon name="chart-line" size="3x" />
+              <Icon name="chart-line" size="2x" />
             </div>
             <h3>Acompanhamento</h3>
             <p>Acompanhe sua evolução e saiba exatamente onde focar para alcançar a aprovação no vestibular.</p>

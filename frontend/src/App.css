@@ -289,7 +289,7 @@ main {
 }
 
 .feature-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #646cff;
 }
@@ -391,10 +391,10 @@ main {
 }
 
 .info-icon {
-  font-size: 4rem;
+  font-size: 2rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -496,7 +496,7 @@ main {
 }
 
 .empty-icon {
-  font-size: 5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   color: #999;
 }
@@ -664,9 +664,9 @@ main {
 }
 
 .feature-icon-small {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   flex-shrink: 0;
-  width: 60px;
+  width: 50px;
   text-align: center;
   color: #646cff;
 }
@@ -870,9 +870,11 @@ main {
 }
 
 .feature-icon-payment {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
   color: #646cff;
+  width: 30px;
+  text-align: center;
 }
 
 .checkout-error {
@@ -886,7 +888,7 @@ main {
 }
 
 .error-icon {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
   color: #cc0000;
 }

@@ -40,16 +40,16 @@ const Dashboard = () => {
       {/* User Info Card */}
       <div className="user-info-card">
         <div className="info-icon">
-          <Icon name="user" size="2x" />
+          <Icon name="user" size="lg" />
         </div>
         <div className="info-content">
           <div className="info-item">
-            <Icon name="user" />
+            <Icon name="user" size="sm" />
             <span className="info-label">Nome:</span>
             <span className="info-value">{user?.name}</span>
           </div>
           <div className="info-item">
-            <Icon name="envelope" />
+            <Icon name="envelope" size="sm" />
             <span className="info-label">Email:</span>
             <span className="info-value">{user?.email}</span>
           </div>
@@ -77,12 +77,12 @@ const Dashboard = () => {
         ) : purchases.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">
-              <Icon name="book-open" size="5x" />
+              <Icon name="book-open" size="3x" />
             </div>
             <h3>Nenhuma apostila ainda</h3>
             <p>Você ainda não possui nenhuma apostila. Comece agora sua jornada rumo à aprovação!</p>
             <Link to="/" className="btn btn-primary btn-lg">
-              <Icon name="rocket" /> Explorar Apostilas Disponíveis
+              <Icon name="rocket" size="sm" /> Explorar Apostilas Disponíveis
             </Link>
           </div>
         ) : (
@@ -90,14 +90,14 @@ const Dashboard = () => {
             {purchases.map(purchase => (
               <div key={purchase._id} className="material-card purchased">
                 <div className="card-badge">
-                  <Icon name="check-circle" /> Adquirida
+                  <Icon name="check-circle" size="sm" /> Adquirida
                 </div>
                 <div className="card-content">
                   <h3>{purchase.material.title}</h3>
                   <p className="card-description">{purchase.material.description}</p>
                   <div className="card-footer">
                     <span className="purchase-date">
-                      <Icon name="calendar" /> {new Date(purchase.createdAt).toLocaleDateString('pt-BR')}
+                      <Icon name="calendar" size="sm" /> {new Date(purchase.createdAt).toLocaleDateString('pt-BR')}
                     </span>
                     <Link 
                       to={`/view/${purchase.material._id}`} 

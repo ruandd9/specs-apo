@@ -58,7 +58,7 @@ const MaterialDetail = () => {
           <div className="features-list">
             <div className="feature-item">
               <span className="feature-icon-small">
-                <Icon name="trophy" size="2x" />
+                <Icon name="trophy" size="lg" />
               </span>
               <div>
                 <strong>Raio-X do ENEM</strong>
@@ -67,7 +67,7 @@ const MaterialDetail = () => {
             </div>
             <div className="feature-item">
               <span className="feature-icon-small">
-                <Icon name="chalkboard-teacher" size="2x" />
+                <Icon name="chalkboard-teacher" size="lg" />
               </span>
               <div>
                 <strong>Instrutores Preparados</strong>
@@ -76,7 +76,7 @@ const MaterialDetail = () => {
             </div>
             <div className="feature-item">
               <span className="feature-icon-small">
-                <Icon name="book" size="2x" />
+                <Icon name="book" size="lg" />
               </span>
               <div>
                 <strong>Conteúdo Completo</strong>
@@ -91,10 +91,10 @@ const MaterialDetail = () => {
           {hasPurchased ? (
             <>
               <div className="purchased-badge-inline">
-                <Icon name="check-circle" /> Você já possui esta apostila
+                <Icon name="check-circle" size="sm" /> Você já possui esta apostila
               </div>
               <Link to={`/view/${id}`} className="btn btn-primary btn-lg">
-                <Icon name="book-open" /> Acessar Apostila
+                <Icon name="book-open" size="sm" /> Acessar Apostila
               </Link>
             </>
           ) : (
@@ -104,7 +104,7 @@ const MaterialDetail = () => {
                 <span className="price-value">R$ {material.price.toFixed(2)}</span>
               </div>
               <Link to={`/checkout/${id}`} className="btn btn-primary btn-lg">
-                <Icon name="shopping-cart" /> Comprar Agora
+                <Icon name="shopping-cart" size="sm" /> Comprar Agora
               </Link>
               <p className="payment-note">Pagamento seguro • Acesso imediato</p>
             </>

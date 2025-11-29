@@ -83,7 +83,7 @@ const Checkout = () => {
         <div className="checkout-card">
           <div className="card-section">
             <h3 className="section-title-small">
-              <Icon name="box-open" /> Resumo do Pedido
+              <Icon name="box-open" size="sm" /> Resumo do Pedido
             </h3>
             <div className="order-item-modern">
               <div className="item-details">
@@ -102,24 +102,24 @@ const Checkout = () => {
           {/* Método de Pagamento */}
           <div className="card-section payment-section-modern">
             <h3 className="section-title-small">
-              <Icon name="credit-card" /> Pagamento Seguro
+              <Icon name="credit-card" size="sm" /> Pagamento Seguro
             </h3>
             <div className="payment-features">
               <div className="payment-feature-item">
                 <span className="feature-icon-payment">
-                  <Icon name="lock" />
+                  <Icon name="lock" size="sm" />
                 </span>
                 <span>Pagamento 100% seguro via Stripe</span>
               </div>
               <div className="payment-feature-item">
                 <span className="feature-icon-payment">
-                  <Icon name="credit-card" />
+                  <Icon name="credit-card" size="sm" />
                 </span>
                 <span>Cartões de crédito e débito</span>
               </div>
               <div className="payment-feature-item">
                 <span className="feature-icon-payment">
-                  <Icon name="bolt" />
+                  <Icon name="bolt" size="sm" />
                 </span>
                 <span>Acesso imediato após aprovação</span>
               </div>
@@ -130,7 +130,7 @@ const Checkout = () => {
           {error && (
             <div className="checkout-error">
               <span className="error-icon">
-                <Icon name="exclamation-triangle" />
+                <Icon name="exclamation-triangle" size="sm" />
               </span>
               <span>{error}</span>
             </div>
@@ -145,12 +145,12 @@ const Checkout = () => {
             >
               {processing ? (
                 <>
-                  <Icon name="spinner" spin />
+                  <Icon name="spinner" spin size="sm" />
                   Processando...
                 </>
               ) : (
                 <>
-                  <Icon name="shopping-cart" /> Pagar R$ {material.price.toFixed(2)}
+                  <Icon name="shopping-cart" size="sm" /> Pagar R$ {material.price.toFixed(2)}
                 </>
               )}
             </button>
